@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детский сад "Golden Age" — премиальное пространство развития</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Элегантная черная тема с золотыми акцентами */
+            --primary: #C5A572; /* Золотой */
+            --primary-dark: #A88B5E;
+            --primary-light: #D4B88C;
+            --secondary: #6B6B6B; /* Серый */
+            --secondary-light: #8A8A8A;
+            --accent: #E5C28E; /* Светлое золото */
+            --dark: #1A1A1A; /* Глубокий черный */
+            --dark-light: #2D2D2D;
+            --gray: #808080;
+            --gray-light: #B3B3B3;
+            --light: #F5F5F5;
+            --white: #FFFFFF;
+            --bg-primary: #121212; /* Основной фон */
+            --bg-secondary: #1E1E1E;
+            --gradient-primary: linear-gradient(135deg, #C5A572, #A88B5E);
+            --gradient-secondary: linear-gradient(135deg, #2D2D2D, #1A1A1A);
+            --gradient-accent: linear-gradient(135deg, #E5C28E, #C5A572);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 16px 32px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.6);
+            --radius-sm: 12px;
+            --radius: 16px;
+            --radius-md: 24px;
+            --radius-lg: 32px;
+            --radius-xl: 48px;
+        }
+
+        body {
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ========== АНИМАЦИИ ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(197, 165, 114, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(197, 165, 114, 0.6); }
+        }
+
+        /* ========== КАСТОМНЫЙ СКРОЛЛ ========== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: var(--radius);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ========== ШАПКА ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 165, 114, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(18, 18, 18, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: var(--radius);
+            color: var(--dark);
+            transition: all 0.5s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: var(--shadow-lg);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(197, 165, 114, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(197, 165, 114, 0.15);
+            font-weight: 600;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* ========== ГЕРОЙ ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 90px;
+            background: radial-gradient(circle at top right, #2D2D2D, #121212);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%23C5A572" d="M100 0L120 70H200L140 115L160 190L100 145L40 190L60 115L0 70H80L100 0Z"/></svg>') repeat;
+            opacity: 0.03;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(197, 165, 114, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(197, 165, 114, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 600;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray-light);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(197, 165, 114, 0.3);
+        }
+
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0) rotateX(0);
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            box-shadow: inset 0 0 0 2px rgba(197, 165, 114, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ========== СЕКЦИИ ========== */
+        .section {
+            padding: 7rem 0;
+            scroll-margin-top: 90px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            color: var(--gray-light);
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+
+        /* ========== ПРЕИМУЩЕСТВА ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-lg);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(197, 165, 114, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* ========== СТАТИСТИКА ========== */
+        .stats {
+            background: var(--bg-secondary);
+            color: var(--light);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%23C5A572" d="M100 0L120 70H200L140 115L160 190L100 145L40 190L60 115L0 70H80L100 0Z"/></svg>') repeat;
+            opacity: 0.03;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 165, 114, 0.2);
+            animation: scaleIn 0.5s ease;
+            animation-fill-mode: both;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(197, 165, 114, 0.4);
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-shadow: 0 2px 10px rgba(197, 165, 114, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+            color: var(--gray-light);
+        }
+
+        /* ========== ГРУППЫ ========== */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .group-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .group-card:nth-child(1) { animation-delay: 0.1s; }
+        .group-card:nth-child(2) { animation-delay: 0.2s; }
+        .group-card:nth-child(3) { animation-delay: 0.3s; }
+        .group-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .group-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(197, 165, 114, 0.3);
+        }
+
+        .group-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .group-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .group-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+        }
+
+        .group-card:hover .group-image img {
+            transform: scale(1.15);
+        }
+
+        .group-info {
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+        }
+
+        .group-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .group-info p {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* ========== РАСПИСАНИЕ ========== */
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(197, 165, 114, 0.2);
+            border-radius: var(--radius-xl);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+
+        .schedule-content {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(197, 165, 114, 0.1);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .schedule-item:hover {
+            background: rgba(197, 165, 114, 0.05);
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            margin: 0 -1.5rem;
+            border-radius: var(--radius);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .schedule-time {
+            color: var(--primary);
+            font-weight: 700;
+            min-width: 140px;
+        }
+
+        .schedule-activity {
+            color: var(--light);
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* ========== ПЕДАГОГИ ========== */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .teacher-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .teacher-card:nth-child(1) { animation-delay: 0.1s; }
+        .teacher-card:nth-child(2) { animation-delay: 0.2s; }
+        .teacher-card:nth-child(3) { animation-delay: 0.3s; }
+        .teacher-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .teacher-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(197, 165, 114, 0.3);
+        }
+
+        .teacher-image {
+            width: 160px;
+            height: 160px;
+            margin: 2.5rem auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid transparent;
+            background: var(--gradient-primary);
+            padding: 4px;
+        }
+
+        .teacher-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--bg-secondary);
+        }
+
+        .teacher-info {
+            padding: 0 2rem 2.5rem;
+        }
+
+        .teacher-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .teacher-position {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .teacher-experience {
+            color: var(--gray-light);
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        /* ========== НОВОСТИ ========== */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .news-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .news-card:nth-child(1) { animation-delay: 0.1s; }
+        .news-card:nth-child(2) { animation-delay: 0.2s; }
+        .news-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .news-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(197, 165, 114, 0.3);
+        }
+
+        .news-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.15);
+        }
+
+        .news-content {
+            padding: 2rem;
+        }
+
+        .news-date {
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: var(--gray-light);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+            color: var(--accent);
+        }
+
+        /* ========== ПИТАНИЕ ========== */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 1rem 2.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(197, 165, 114, 0.2);
+            border-radius: var(--radius-xl);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .menu-tab:hover,
+        .menu-tab.active {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+
+        .menu-content {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+        }
+
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .menu-table th {
+            text-align: left;
+            padding: 1.2rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .menu-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid rgba(197, 165, 114, 0.1);
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .menu-table tr:hover td {
+            background: rgba(197, 165, 114, 0.05);
+        }
+
+        /* ========== КОНТАКТЫ ========== */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            animation: fadeInLeft 0.5s ease;
+        }
+
+        .contact-info-item:hover {
+            transform: translateX(15px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--dark);
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-details h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            box-shadow: var(--shadow);
+            animation: fadeInRight 0.5s ease;
+        }
+
+        .contact-form h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem 1.8rem;
+            border: 2px solid rgba(197, 165, 114, 0.1);
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            color: var(--light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(197, 165, 114, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray);
+        }
+
+        .map {
+            height: 450px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(197, 165, 114, 0.1);
+            margin-top: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .map iframe {
+            filter: grayscale(100%) invert(90%) contrast(120%);
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            background: linear-gradient(135deg, #0A0A0A, #000000);
+            color: var(--light);
+            padding: 5rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .footer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%23C5A572" d="M100 0L120 70H200L140 115L160 190L100 145L40 190L60 115L0 70H80L100 0Z"/></svg>') repeat;
+            opacity: 0.02;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary);
+            transform: translateX(8px);
+            display: inline-block;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(197, 165, 114, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== МОДАЛЬНОЕ ОКНО ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            animation: scaleIn 0.3s ease;
+            border: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(197, 165, 114, 0.1);
+            border: 1px solid rgba(197, 165, 114, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: rotate(90deg);
+            border-color: transparent;
+        }
+
+        /* ========== TOAST ========== */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            padding: 1.2rem 2.5rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2001;
+            font-weight: 600;
+            font-size: 1.1rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        /* ========== КНОПКА НАВЕРХ ========== */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ========== ЧАТ-ПОМОЩНИК ========== */
+        .chat-bot {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            animation: pulse 2s ease-in-out infinite;
+            color: var(--dark);
+        }
+
+        .chat-bot:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .chat-bot.active {
+            background: var(--gradient-secondary);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 7rem;
+            left: 2rem;
+            width: 350px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+            animation: fadeInUp 0.3s ease;
+            border: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .chat-window.active {
+            display: block;
+        }
+
+        .chat-header {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            padding: 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-close {
+            background: transparent;
+            border: none;
+            color: var(--dark);
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .chat-close:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: var(--radius);
+            max-width: 80%;
+        }
+
+        .chat-message.bot {
+            background: rgba(197, 165, 114, 0.1);
+            color: var(--light);
+            margin-right: auto;
+            border: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .chat-message.user {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid rgba(197, 165, 114, 0.1);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid rgba(197, 165, 114, 0.2);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: var(--bg-primary);
+            color: var(--light);
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .chat-input button {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            margin-left: 0.5rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .chat-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* ========== АДАПТИВНОСТЬ ========== */
+        @media (max-width: 1024px) {
+            .features-grid,
+            .groups-grid,
+            .teachers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero h1 span {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 90px);
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 3rem;
+                transition: left 0.3s ease;
+                overflow-y: auto;
+                gap: 0.5rem;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                font-size: 1.3rem;
+                padding: 1.2rem;
+                color: var(--light);
+            }
+
+            .hero .container,
+            .contacts-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero h1 span {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid,
+            .groups-grid,
+            .teachers-grid,
+            .stats-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 span {
+                font-size: 2rem;
+            }
+
+            .schedule-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .schedule-time,
+            .schedule-activity {
+                text-align: left;
+            }
+
+            .chat-window {
+                width: 300px;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- КНОПКА НАВЕРХ -->
+    <div class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</div>
+
+    <!-- ЧАТ-ПОМОЩНИК -->
+    <div class="chat-bot" onclick="toggleChat()" id="chatBot">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            Чат-помощник
+            <button class="chat-close" onclick="toggleChat()" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                Здравствуйте! Чем я могу вам помочь?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Введите сообщение..." id="chatInput">
+            <button onclick="sendMessage()">→</button>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">☀️</div>
+                <div class="logo-text">
+                    <h1>Golden Age</h1>
+                    <p>Мир детства</p>
+                </div>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
+            <nav class="nav-menu" id="navMenu">
+                <a class="nav-link" href="#about">О нас</a>
+                <a class="nav-link" href="#groups">Группы</a>
+                <a class="nav-link" href="#teachers">Педагоги</a>
+                <a class="nav-link" href="#schedule">Расписание</a>
+                <a class="nav-link" href="#news">Новости</a>
+                <a class="nav-link" href="#nutrition">Питание</a>
+                <a class="nav-link" href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ГЕРОЙ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">ПРЕМИАЛЬНЫЙ ДЕТСКИЙ САД</div>
+                <h1>Пространство, где<br><span>растут таланты</span></h1>
+                <p>Инновационный детский сад с индивидуальным подходом, авторскими методиками и премиальными стандартами комфорта.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('about')">Узнать больше</button>
+                    <button class="btn btn-outline" onclick="openModal('tour')">Записаться на экскурсию</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://avatars.mds.yandex.net/i?id=babe7331ad47b18511ce672412834301b7a4a5d0-8186552-images-thumbs&n=13" alt="Счастливые дети">
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Преимущества,</span> которым доверяют</h2>
+                <p class="section-subtitle">Создаем идеальные условия для гармоничного развития вашего ребенка</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" onclick="openModal('feature1')">
+                    <div class="feature-icon">📚</div>
+                    <h3>Авторские методики</h3>
+                    <p>Инновационные программы развития, сочетающие лучшие мировые практики и традиции</p>
+                </div>
+                <div class="feature-card" onclick="openModal('feature2')">
+                    <div class="feature-icon">👥</div>
+                    <h3>Камерные группы</h3>
+                    <p>Всего 12-15 детей. Максимальное внимание каждому ребенку</p>
+                </div>
+                <div class="feature-card" onclick="openModal('feature3')">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Премиальная среда</h3>
+                    <p>Современное оборудование, дизайнерские интерьеры, smart-пространства</p>
+                </div>
+                <div class="feature-card" onclick="openModal('feature4')">
+                    <div class="feature-icon">🍎</div>
+                    <h3>Здоровое питание</h3>
+                    <p>Пятиразовое питание от шеф-повара, контроль нутрициолога</p>
+                </div>
+                <div class="feature-card" onclick="openModal('feature5')">
+                    <div class="feature-icon">⚕️</div>
+                    <h3>Health-сопровождение</h3>
+                    <p>Педиатр, психолог, логопед, нейропсихолог в штате</p>
+                </div>
+                <div class="feature-card" onclick="openModal('feature6')">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Эко-территория</h3>
+                    <p>Ландшафтный парк, игровые площадки, видеонаблюдение 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТАТИСТИКА -->
+    <div class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="stat1">15</div>
+                    <div class="stat-label">лет безупречной работы</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat2">220</div>
+                    <div class="stat-label">счастливых воспитанников</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat3">34</div>
+                    <div class="stat-label">высококлассных педагога</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat4">1200+</div>
+                    <div class="stat-label">успешных выпускников</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ГРУППЫ -->
+    <section class="section" id="groups">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Возрастные</span> группы</h2>
+                <p class="section-subtitle">Гармоничное развитие с учетом возрастных особенностей</p>
+            </div>
+            <div class="groups-grid">
+                <div class="group-card" onclick="openModal('group1')">
+                    <div class="group-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=93be4daf11198a26ece1e08d35a1d3460924ae9c-12585911-images-thumbs&n=13" alt="Ясельная группа">
+                    </div>
+                    <div class="group-info">
+                        <h3>Ясельная</h3>
+                        <p>1.5–3 года · 12 детей</p>
+                    </div>
+                </div>
+                <div class="group-card" onclick="openModal('group2')">
+                    <div class="group-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=6736c0c67df26a7e7be5397b2bd3038b9032ba33-5848407-images-thumbs&n=13" alt="Младшая группа">
+                    </div>
+                    <div class="group-info">
+                        <h3>Младшая</h3>
+                        <p>3–4 года · 15 детей</p>
+                    </div>
+                </div>
+                <div class="group-card" onclick="openModal('group3')">
+                    <div class="group-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=c848786ec59a027ff95e4bbb3af5323292dcb328-5381183-images-thumbs&n=13" alt="Средняя группа">
+                    </div>
+                    <div class="group-info">
+                        <h3>Средняя</h3>
+                        <p>4–5 лет · 15 детей</p>
+                    </div>
+                </div>
+                <div class="group-card" onclick="openModal('group4')">
+                    <div class="group-image">
+                        <img src="https://static.tildacdn.com/tild6436-3433-4866-b464-393038356139/lovely-indoors-cheer.jpg" alt="Старшая группа">
+                    </div>
+                    <div class="group-info">
+                        <h3>Старшая</h3>
+                        <p>5–7 лет · 15 детей</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- РАСПИСАНИЕ -->
+    <section class="section" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Режим</span> дня</h2>
+                <p class="section-subtitle">Оптимальное расписание для каждой возрастной группы</p>
+            </div>
+            
+            <div class="schedule-tabs">
+                <button class="tab-btn active" onclick="showSchedule('early')">Ясельная</button>
+                <button class="tab-btn" onclick="showSchedule('middle')">Младшая/Средняя</button>
+                <button class="tab-btn" onclick="showSchedule('senior')">Старшая</button>
+            </div>
+
+            <div class="schedule-content" id="scheduleContent"></div>
+        </div>
+    </section>
+
+    <!-- ПЕДАГОГИ -->
+    <section class="section" id="teachers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Наши</span> педагоги</h2>
+                <p class="section-subtitle">Команда профессионалов, влюбленных в свое дело</p>
+            </div>
+            <div class="teachers-grid">
+                <div class="teacher-card" onclick="openModal('teacher1')">
+                    <div class="teacher-image">
+                        <img src="https://bbnews.ru/wp-content/uploads/2019/11/Bezyimyannyiy2.png" alt="Иванова Е.П.">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Елена Петровна</h3>
+                        <p class="teacher-position">Заведующая</p>
+                        <p class="teacher-experience">Стаж 25 лет</p>
+                    </div>
+                </div>
+                <div class="teacher-card" onclick="openModal('teacher2')">
+                    <div class="teacher-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=a304e1206df9121d22bd6af9e8190c3965ee7b6e-4954930-images-thumbs&n=13" alt="Петрова М.И.">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Мария Ивановна</h3>
+                        <p class="teacher-position">Воспитатель яслей</p>
+                        <p class="teacher-experience">Стаж 15 лет</p>
+                    </div>
+                </div>
+                <div class="teacher-card" onclick="openModal('teacher3')">
+                    <div class="teacher-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=230984301e16a4db59da32c05c788eefc7a1986b-5236810-images-thumbs&n=13" alt="Сидорова А.В.">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Анна Владимировна</h3>
+                        <p class="teacher-position">Музыкальный руководитель</p>
+                        <p class="teacher-experience">Стаж 12 лет</p>
+                    </div>
+                </div>
+                <div class="teacher-card" onclick="openModal('teacher4')">
+                    <div class="teacher-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=7acdf550d85d3701ba0cef5e1ae3eb0f0e1b10d2-16399956-images-thumbs&n=13" alt="Козлов Д.С.">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Дмитрий Сергеевич</h3>
+                        <p class="teacher-position">Инструктор по физкультуре</p>
+                        <p class="teacher-experience">Стаж 8 лет</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВОСТИ -->
+    <section class="section" id="news">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Новости</span> и события</h2>
+                <p class="section-subtitle">Будьте в курсе жизни детского сада</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card" onclick="openModal('news1')">
+                    <div class="news-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=6793d36e6650fb21d830f43b8c556ad8550260e0-16116737-images-thumbs&n=13" alt="Новость 1">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">15 марта 2024</div>
+                        <h3 class="news-title">Весенний фестиваль талантов</h3>
+                        <p class="news-excerpt">Юные артисты порадовали родителей яркими выступлениями и творческими номерами...</p>
+                        <a href="#" class="read-more">Читать далее →</a>
+                    </div>
+                </div>
+                <div class="news-card" onclick="openModal('news2')">
+                    <div class="news-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=0fbe25f8f277bdbe4eb83393121a44ee2799243c-4347893-images-thumbs&n=13" alt="Новость 2">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">10 марта 2024</div>
+                        <h3 class="news-title">Экскурсия в технопарк</h3>
+                        <p class="news-excerpt">Старшая группа познакомилась с миром технологий, робототехники и 3D-моделирования...</p>
+                        <a href="#" class="read-more">Читать далее →</a>
+                    </div>
+                </div>
+                <div class="news-card" onclick="openModal('news3')">
+                    <div class="news-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=a6af4288d15959f16e85e753873b2de7010f1c41-5235735-images-thumbs&n=13" alt="Новость 3">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">5 марта 2024</div>
+                        <h3 class="news-title">День открытых дверей</h3>
+                        <p class="news-excerpt">Приглашаем родителей познакомиться с садом, педагогами и программами развития...</p>
+                        <a href="#" class="read-more">Читать далее →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПИТАНИЕ -->
+    <section class="section" id="nutrition">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Здоровое</span> питание</h2>
+                <p class="section-subtitle">Сбалансированное меню от профессиональных шеф-поваров</p>
+            </div>
+            
+            <div class="menu-tabs">
+                <button class="menu-tab active" onclick="showMenu('monday')">ПН</button>
+                <button class="menu-tab" onclick="showMenu('tuesday')">ВТ</button>
+                <button class="menu-tab" onclick="showMenu('wednesday')">СР</button>
+                <button class="menu-tab" onclick="showMenu('thursday')">ЧТ</button>
+                <button class="menu-tab" onclick="showMenu('friday')">ПТ</button>
+            </div>
+
+            <div class="menu-content" id="menuContent"></div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section class="section" id="contacts">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span>Свяжитесь</span> с нами</h2>
+                <p class="section-subtitle">Мы всегда готовы ответить на ваши вопросы</p>
+            </div>
+            <div class="contacts-grid">
+                <div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Адрес</h4>
+                            <p>г. Казань, ул. Свободы, д. 7</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Телефон</h4>
+                            <p>+7 (495) 123-45-67</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@goldenage.kzn.ru</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-details">
+                            <h4>Режим работы</h4>
+                            <p>Пн-Пт: 7:00 – 19:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Напишите нам</h3>
+                    <form onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Электронная почта" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Телефон">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Ваше сообщение"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map">
+                <!-- Карта с адресом: г. Казань, ул. Свободы, д. 7 -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.789123456789!2d49.105890!3d55.796127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x415ead2b7caccd99%3A0x7b8e3a2b5f5e3a2b!2z0YPQuy4g0KHQstC-0LHQvtC00YssIDcsINCa0LDQt9Cw0L3RjCwg0KDQtdGB0L8uINCi0LDRgtCw0YDRgdGC0LDQvSwgNDIwMDk1!5e0!3m2!1sru!2sru!4v1700000000000!5m2!1sru!2sru" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">☀️ Солнышко</div>
+                    <p class="footer-description">Премиальный детский сад с индивидуальным подходом, авторскими методиками и премиальными стандартами комфорта.</p>
+                    <div class="footer-social">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🎥</a>
+                        <a href="#">📱</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>О саде</h4>
+                    <ul>
+                        <li><a onclick="scrollToSection('about')">Преимущества</a></li>
+                        <li><a onclick="scrollToSection('teachers')">Педагоги</a></li>
+                        <li><a onclick="scrollToSection('groups')">Группы</a></li>
+                        <li><a onclick="scrollToSection('schedule')">Расписание</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Родителям</h4>
+                    <ul>
+                        <li><a onclick="scrollToSection('nutrition')">Питание</a></li>
+                        <li><a onclick="scrollToSection('news')">Новости</a></li>
+                        <li><a onclick="openModal('faq')">Вопрос-ответ</a></li>
+                        <li><a onclick="openModal('documents')">Документы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a onclick="scrollToSection('contacts')">Адрес</a></li>
+                        <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+                        <li><a href="mailto:info@solncevo.msk.ru">info@solncevo.msk.ru</a></li>
+                        <li><a onclick="openModal('vacancies')">Вакансии</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2009–2024 Премиальный детский сад «Солнышко». Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Данные
+        const DATA = {
+            schedules: {
+                early: [
+                    { time: '07:00–08:00', activity: 'Прием детей, свободные игры' },
+                    { time: '08:00–08:20', activity: 'Утренняя гимнастика' },
+                    { time: '08:20–08:50', activity: 'Завтрак' },
+                    { time: '09:00–09:20', activity: 'Развивающие занятия' },
+                    { time: '09:20–11:00', activity: 'Прогулка' },
+                    { time: '11:00–11:30', activity: 'Второй завтрак' },
+                    { time: '11:30–12:00', activity: 'Спокойные игры' },
+                    { time: '12:00–12:30', activity: 'Обед' },
+                    { time: '12:30–15:00', activity: 'Дневной сон' },
+                    { time: '15:00–15:30', activity: 'Полдник' },
+                    { time: '15:30–16:30', activity: 'Развивающие игры' },
+                    { time: '16:30–17:30', activity: 'Прогулка' },
+                    { time: '17:30–18:30', activity: 'Свободная игра, уход домой' }
+                ],
+                middle: [
+                    { time: '07:00–08:00', activity: 'Прием детей' },
+                    { time: '08:00–08:25', activity: 'Зарядка' },
+                    { time: '08:25–08:55', activity: 'Завтрак' },
+                    { time: '09:00–09:40', activity: 'Развивающие занятия' },
+                    { time: '09:40–10:00', activity: 'Второй завтрак' },
+                    { time: '10:00–12:00', activity: 'Прогулка' },
+                    { time: '12:00–12:30', activity: 'Обед' },
+                    { time: '12:30–15:00', activity: 'Дневной сон' },
+                    { time: '15:00–15:30', activity: 'Полдник' },
+                    { time: '15:30–16:30', activity: 'Кружки по интересам' },
+                    { time: '16:30–17:30', activity: 'Прогулка' },
+                    { time: '17:30–18:30', activity: 'Игры, уход домой' }
+                ],
+                senior: [
+                    { time: '07:00–08:00', activity: 'Прием детей' },
+                    { time: '08:00–08:25', activity: 'Зарядка' },
+                    { time: '08:25–08:55', activity: 'Завтрак' },
+                    { time: '09:00–10:30', activity: 'Занятия (3 занятия)' },
+                    { time: '10:30–10:50', activity: 'Второй завтрак' },
+                    { time: '10:50–12:30', activity: 'Прогулка' },
+                    { time: '12:30–13:00', activity: 'Обед' },
+                    { time: '13:00–15:00', activity: 'Дневной сон' },
+                    { time: '15:00–15:30', activity: 'Полдник' },
+                    { time: '15:30–16:30', activity: 'Подготовка к школе' },
+                    { time: '16:30–17:30', activity: 'Кружки, секции' },
+                    { time: '17:30–18:30', activity: 'Прогулка, уход домой' }
+                ]
+            },
+            menu: {
+                monday: {
+                    breakfast: 'Каша овсяная с ягодами, хлеб с маслом, какао',
+                    lunch: 'Суп куриный с домашней лапшой, пюре картофельное, котлета мясная, компот',
+                    snack: 'Кефир, печенье овсяное',
+                    dinner: 'Омлет с сыром, чай с лимоном'
+                },
+                tuesday: {
+                    breakfast: 'Каша гречневая с молоком, бутерброд с сыром, чай',
+                    lunch: 'Борщ со сметаной, макароны по-флотски, тефтели, сок яблочный',
+                    snack: 'Фрукты сезонные, йогурт',
+                    dinner: 'Рыбные котлеты, пюре картофельное, чай'
+                },
+                wednesday: {
+                    breakfast: 'Каша рисовая молочная с изюмом, какао',
+                    lunch: 'Суп гороховый, гречка отварная, гуляш мясной, компот',
+                    snack: 'Творожок с фруктами, печенье',
+                    dinner: 'Запеканка творожная со сметаной, чай'
+                },
+                thursday: {
+                    breakfast: 'Каша пшенная с тыквой, чай, бутерброд с маслом',
+                    lunch: 'Рассольник, пюре картофельное, котлета куриная, сок мультифруктовый',
+                    snack: 'Бананы, ряженка',
+                    dinner: 'Овощное рагу с мясом, чай'
+                },
+                friday: {
+                    breakfast: 'Каша манная с вареньем, какао',
+                    lunch: 'Суп с фрикадельками, макароны, рыба запеченная, компот',
+                    snack: 'Вафли, молоко',
+                    dinner: 'Сырники со сметаной, чай'
+                }
+            },
+            features: {
+                feature1: 'Авторские методики развития: программа "Детство", элементы системы Монтессори, развивающие игры Воскобовича, STEM-образование. Регулярное повышение квалификации педагогов.',
+                feature2: 'Камерные группы до 15 человек. Это позволяет уделить максимум внимания каждому ребенку, выявить и развить его способности. Индивидуальные занятия с логопедом и психологом.',
+                feature3: 'Премиальное оснащение: интерактивные доски, мультимедийное оборудование, робототехника, сенсорная комната, 3D-моделирование, дизайнерские интерьеры.',
+                feature4: 'Пятиразовое питание от шеф-повара. Контроль качества на всех этапах. Индивидуальное диетическое меню по показаниям. Питьевой режим.',
+                feature5: 'Медицинский блок: кабинет педиатра, процедурный кабинет, массаж, физиотерапия. Штат: врач-педиатр, медсестра, логопед, психолог, нейропсихолог.',
+                feature6: 'Огороженная территория площадью 0.5 га. Ландшафтный дизайн, игровые площадки, спортивная зона, экологическая тропа. Круглосуточное видеонаблюдение.'
+            },
+            groups: {
+                group1: { title: 'Ясельная группа (1.5–3 года)', capacity: '12 детей', teachers: 'Петрова М.И., помощник воспитателя', description: 'Адаптация к детскому саду, развитие сенсорных эталонов, мелкой моторики, речи, первичная социализация.' },
+                group2: { title: 'Младшая группа (3–4 года)', capacity: '15 детей', teachers: 'Иванова А.А., Смирнова Е.В.', description: 'Развитие познавательных процессов, формирование элементарных математических представлений, развитие речи, творческих способностей.' },
+                group3: { title: 'Средняя группа (4–5 лет)', capacity: '15 детей', teachers: 'Козлова Н.С., Васильева Т.И.', description: 'Подготовка к школе, развитие логического мышления, обучение чтению, английский язык, окружающий мир.' },
+                group4: { title: 'Старшая группа (5–7 лет)', capacity: '15 детей', teachers: 'Морозова Л.П., Новикова О.В.', description: 'Интенсивная подготовка к школе, углубленное изучение предметов, развитие лидерских качеств, проектная деятельность.' }
+            },
+            teachers: {
+                teacher1: { name: 'Иванова Елена Петровна', position: 'Заведующая', education: 'Высшее педагогическое, МПГУ, магистратура', experience: 'Стаж 25 лет', achievements: 'Почетный работник образования РФ, автор методических пособий' },
+                teacher2: { name: 'Петрова Мария Ивановна', position: 'Воспитатель яслей', education: 'Высшее педагогическое, МГППУ', experience: 'Стаж 15 лет', achievements: 'Специалист высшей категории, победитель конкурса "Воспитатель года"' },
+                teacher3: { name: 'Сидорова Анна Владимировна', position: 'Музыкальный руководитель', education: 'Высшее музыкальное, МГК им. Чайковского', experience: 'Стаж 12 лет', achievements: 'Лауреат международных конкурсов, автор детских песен' },
+                teacher4: { name: 'Козлов Дмитрий Сергеевич', position: 'Инструктор по физкультуре', education: 'Высшее спортивное, РГУФК', experience: 'Стаж 8 лет', achievements: 'Мастер спорта, кандидат в мастера по плаванию' }
+            },
+            news: {
+                news1: { title: 'Весенний фестиваль талантов', date: '15 марта 2024', content: 'Дети подготовительной группы показали музыкальную сказку "Золушка". Родители и педагоги высоко оценили подготовку юных артистов. Все участники получили дипломы и сладкие подарки.' },
+                news2: { title: 'Экскурсия в технопарк', date: '10 марта 2024', content: 'Воспитанники старших групп посетили детский технопарк, где познакомились с робототехникой, 3D-моделированием и программированием. Дети создали своих первых роботов.' },
+                news3: { title: 'День открытых дверей', date: '5 марта 2024', content: 'Приглашаем родителей будущих воспитанников 15 апреля в 10:00. В программе: экскурсия по саду, открытые занятия, встреча с педагогами, презентация образовательных программ.' }
+            }
+        };
+
+        // Навигация
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('navMenu').classList.remove('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Хедер при скролле
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Активная ссылка в меню
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Чат
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatBot = document.getElementById('chatBot');
+            chatWindow.classList.toggle('active');
+            chatBot.classList.toggle('active');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const messages = document.getElementById('chatMessages');
+            
+            messages.innerHTML += `<div class="chat-message user">${message}</div>`;
+            
+            setTimeout(() => {
+                const botResponses = [
+                    "Спасибо за вопрос! Наш администратор свяжется с вами в ближайшее время.",
+                    "Отличный вопрос! Вы можете записаться на экскурсию через форму на сайте.",
+                    "Благодарим за интерес к нашему саду! Подробную информацию можно узнать по телефону.",
+                    "Здорово, что вы интересуетесь! Приходите на день открытых дверей 15 апреля."
+                ];
+                const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
+                messages.innerHTML += `<div class="chat-message bot">${randomResponse}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        document.getElementById('chatInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function showSchedule(group) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const schedule = DATA.schedules[group];
+            const content = document.getElementById('scheduleContent');
+            content.innerHTML = schedule.map(item => 
+                `<div class="schedule-item">
+                    <span class="schedule-time">${item.time}</span>
+                    <span class="schedule-activity">${item.activity}</span>
+                </div>`
+            ).join('');
+        }
+
+        function showMenu(day) {
+            document.querySelectorAll('.menu-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const menu = DATA.menu[day];
+            const content = document.getElementById('menuContent');
+            content.innerHTML = `
+                <table class="menu-table">
+                    <tr><th>Прием пищи</th><th>Меню</th></tr>
+                    <tr><td>Завтрак</td><td>${menu.breakfast}</td></tr>
+                    <tr><td>Обед</td><td>${menu.lunch}</td></tr>
+                    <tr><td>Полдник</td><td>${menu.snack}</td></tr>
+                    <tr><td>Ужин</td><td>${menu.dinner}</td></tr>
+                </table>
+            `;
+        }
+
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modalContent');
+
+            if (type.startsWith('feature')) {
+                const titles = { feature1: 'Авторские методики', feature2: 'Камерные группы', feature3: 'Премиальная среда', feature4: 'Здоровое питание', feature5: 'Медицинское сопровождение', feature6: 'Эко-территория' };
+                content.innerHTML = `<h2 style="margin-bottom:20px; color:var(--primary);">${titles[type]}</h2><p style="font-size:1.1rem; line-height:1.8;">${DATA.features[type]}</p>`;
+            } else if (type.startsWith('group')) {
+                const g = DATA.groups[type];
+                content.innerHTML = `<h2 style="margin-bottom:15px; color:var(--primary);">${g.title}</h2>
+                    <p style="margin-bottom:10px;"><strong>Наполняемость:</strong> ${g.capacity}</p>
+                    <p style="margin-bottom:10px;"><strong>Педагоги:</strong> ${g.teachers}</p>
+                    <p style="font-size:1rem; line-height:1.8;">${g.description}</p>`;
+            } else if (type.startsWith('teacher')) {
+                const t = DATA.teachers[type];
+                content.innerHTML = `<h2 style="margin-bottom:10px; color:var(--primary);">${t.name}</h2>
+                    <p style="margin-bottom:5px;"><strong>Должность:</strong> ${t.position}</p>
+                    <p style="margin-bottom:5px;"><strong>Образование:</strong> ${t.education}</p>
+                    <p style="margin-bottom:5px;"><strong>Стаж:</strong> ${t.experience}</p>
+                    <p><strong>Достижения:</strong> ${t.achievements}</p>`;
+            } else if (type.startsWith('news')) {
+                const n = DATA.news[type];
+                content.innerHTML = `<h2 style="margin-bottom:10px; color:var(--primary);">${n.title}</h2>
+                    <p style="color:var(--gray-light); margin-bottom:20px;">${n.date}</p>
+                    <p style="font-size:1.1rem; line-height:1.8;">${n.content}</p>`;
+            } else if (type === 'tour') {
+                content.innerHTML = `
+                    <h2 style="margin-bottom:30px; color:var(--primary);">Запись на экскурсию</h2>
+                    <form onsubmit="submitForm(event)">
+                        <div class="form-group"><input type="text" placeholder="Ваше имя" required></div>
+                        <div class="form-group"><input type="tel" placeholder="Телефон" required></div>
+                        <div class="form-group"><input type="email" placeholder="Email"></div>
+                        <div class="form-group">
+                            <select>
+                                <option>Удобное время</option>
+                                <option>10:00</option>
+                                <option>11:00</option>
+                                <option>12:00</option>
+                                <option>15:00</option>
+                                <option>16:00</option>
+                                <option>17:00</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%">Отправить заявку</button>
+                    </form>
+                `;
+            } else if (type === 'license') {
+                content.innerHTML = `<h2 style="margin-bottom:20px; color:var(--primary);">Лицензия</h2>
+                    <p><strong>Серия:</strong> 77Л01 № 0012345</p>
+                    <p><strong>Дата выдачи:</strong> 15 мая 2009 года</p>
+                    <p><strong>Срок действия:</strong> бессрочно</p>
+                    <p><strong>Кем выдана:</strong> Департамент образования города Москвы</p>`;
+            } else if (type === 'program') {
+                content.innerHTML = `<h2 style="margin-bottom:20px; color:var(--primary);">Образовательная программа</h2>
+                    <p style="margin-bottom:15px;"><strong>Основная программа:</strong> "От рождения до школы" под ред. Н.Е. Вераксы</p>
+                    <p style="margin-bottom:15px;"><strong>Дополнительные программы:</strong></p>
+                    <ul style="margin-left:20px; margin-bottom:15px;">
+                        <li>"Юный эколог"</li>
+                        <li>"Английский для малышей"</li>
+                        <li>"Робототехника для дошкольников"</li>
+                        <li>"STEM-образование"</li>
+                    </ul>`;
+            } else if (type === 'vacancies') {
+                content.innerHTML = `<h2 style="margin-bottom:20px; color:var(--primary);">Вакансии</h2>
+                    <ul style="list-style:disc; padding-left:20px; margin-bottom:20px;">
+                        <li style="margin-bottom:10px;">Воспитатель (з/п от 80 000 ₽)</li>
+                        <li style="margin-bottom:10px;">Помощник воспитателя (з/п от 50 000 ₽)</li>
+                        <li style="margin-bottom:10px;">Музыкальный руководитель (з/п от 70 000 ₽)</li>
+                        <li style="margin-bottom:10px;">Педагог английского языка (з/п от 75 000 ₽)</li>
+                    </ul>
+                    <p>Резюме направлять на hr@solncevo.msk.ru</p>`;
+            } else if (type === 'faq') {
+                content.innerHTML = `<h2 style="margin-bottom:20px; color:var(--primary);">Часто задаваемые вопросы</h2>
+                    <div style="margin-bottom:20px;">
+                        <p style="font-weight:600; margin-bottom:5px;">Как записаться в сад?</p>
+                        <p>Оставьте заявку на сайте или позвоните нам. Мы пригласим вас на экскурсию и расскажем о дальнейших шагах.</p>
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <p style="font-weight:600; margin-bottom:5px;">Есть ли адаптационный период?</p>
+                        <p>Да, мы практикуем мягкую адаптацию. Первое время можно приводить ребенка на 2-3 часа, постепенно увеличивая время пребывания.</p>
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <p style="font-weight:600; margin-bottom:5px;">Какие документы нужны?</p>
+                        <p>Свидетельство о рождении, паспорт родителя, медицинская карта, прививочный сертификат, СНИЛС ребенка.</p>
+                    </div>`;
+            } else if (type === 'documents') {
+                content.innerHTML = `<h2 style="margin-bottom:20px; color:var(--primary);">Документы</h2>
+                    <ul style="list-style:disc; padding-left:20px;">
+                        <li style="margin-bottom:10px;">Устав ДОУ</li>
+                        <li style="margin-bottom:10px;">Лицензия на образовательную деятельность</li>
+                        <li style="margin-bottom:10px;">Свидетельство о государственной аккредитации</li>
+                        <li style="margin-bottom:10px;">Образовательная программа</li>
+                        <li style="margin-bottom:10px;">Правила приема</li>
+                    </ul>`;
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            showToast('Спасибо! Мы свяжемся с вами в ближайшее время.');
+            closeModal();
+        }
+
+        function animateStats() {
+            const stats = [15, 220, 34, 1200];
+            document.querySelectorAll('.stat-number').forEach((el, i) => {
+                let count = 0;
+                const target = stats[i];
+                const step = target / 50;
+                const timer = setInterval(() => {
+                    count += step;
+                    if (count >= target) {
+                        el.textContent = target + (i === 3 ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(count);
+                    }
+                }, 20);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSchedule('early');
+            showMenu('monday');
+            animateStats();
+
+            window.onclick = (e) => {
+                if (e.target === document.getElementById('modal')) closeModal();
+            };
+        });
+    </script>
+</body>
+</html>
